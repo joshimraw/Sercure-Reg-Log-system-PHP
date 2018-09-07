@@ -1,2 +1,2 @@
-# Secure Registration and Login system with php mysql jquery
-
+# PHP-Login-System
+A sample login system with user registration

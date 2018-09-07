@@ -1,21 +1,20 @@
 <?php 
 require_once "inc/header.php";
 
+
 define('__CONFIG__', true);
 include_once 'inc/config.php';
+
 
 ?>
 
   	<div class="uk-section uk-container">
   		<?php 
-  			echo "Hello world. Today is: ";
-  			echo date("Y m d");
+  			echo "Hello world. Today is: ". date("y m d"). "<br>";
+  			echo $_SESSION['user_id'] . ' is your user id';
   		?> 
       
-  		<p>
-  			<a href="/login.php">Login</a> |
-  			<a href="/register.php">Register</a>
-  		</p>
+
   	</div>
 
 
