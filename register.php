@@ -1,4 +1,9 @@
-<?php require_once "inc/header.php"; ?> 
+<?php 
+	define('__CONFIG__', true);
+	require_once "inc/header.php";
+	require_once "inc/config.php";
+	force_to_dashboard();
+?> 
 
 
 
@@ -23,7 +28,7 @@
 
 		<div class="uk-margin uk-alert uk-alert-danger js-error" style="display: none;"></div>
 		<div class="uk-margin">
-			<button class="uk-button uk-button-default" type="submit">Register</button>
+			<button class="uk-button uk-button-primary" type="submit">Register</button>
 		</div>
 	</form>
 </div>
