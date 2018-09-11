@@ -7,7 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="follow">
-    <title>Page Title</title>
+    <?php 
+      $sitename = 'small-efforts';
+      $title;
+
+      if(isset($title)){
+       echo "<title> $title | $sitename </title>";
+      } 
+        else {
+      echo "<title>$sitename</title>";
+      }
+      ?>
+
     <base href="/" />
     <link rel="stylesheet" href="vendor/uikit.min.css" />
   </head>

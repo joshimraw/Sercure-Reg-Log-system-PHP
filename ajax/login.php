@@ -5,6 +5,8 @@
 
 	// Require the config
 	require_once "../inc/config.php"; 
+	require_once "session.php"; 
+
 
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// Always return JSON format

@@ -1,7 +1,6 @@
 <?php 
-require_once "inc/header.php";
-
 define('__CONFIG__', true);
+require_once "inc/header.php";
 include_once 'inc/config.php';
 
 ?>

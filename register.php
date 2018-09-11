@@ -1,7 +1,9 @@
 <?php 
 	define('__CONFIG__', true);
+	$title = "Register";
 	require_once "inc/header.php";
 	require_once "inc/config.php";
+	require_once "ajax/session.php";
 	force_to_dashboard();
 ?> 
 
