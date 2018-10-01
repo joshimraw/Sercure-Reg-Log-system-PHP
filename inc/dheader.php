@@ -31,16 +31,9 @@
 
                  <div class="uk-navbar-right">
                     <div class="uk-navbar-item">
-                      <form class="js-login">
 
-                        <div class="uk-margin uk-alert uk-alert-danger js-error" style="display: none;" ></div>
-                        <div class="uk-margin uk-alert uk-alert-success js-success" style="display: none;"></div>
+                      <a href="/logout.php" class="uk-button uk-button-primary">Logout</a>
 
-                      <input class="uk-input uk-form-width-medium" type="email" placeholder="john@ex.com" required="required">
-                      <input class="uk-input uk-form-width-medium" type="password" placeholder="password" required="required">
-                      <button class="uk-button uk-button-primary" type="submit">Login</button>
-                      <a href="/register.php" class="uk-button uk-button-text">Register</a>
-                      </form>
 
                     </div>
               </div>

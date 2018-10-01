@@ -1,52 +1,40 @@
 <?php 
+define('__CONFIG__', true);
 
-	// Allow the config
-	define('__CONFIG__', true);
+require_once "../inc/config.php";
+require_once "session.php";
 
-	// Require the config
-	require_once "../inc/config.php"; 
-	require_once "session.php"; 
-
-
-	if($_SERVER['REQUEST_METHOD'] == 'POST') {
-		// Always return JSON format
-		// header('Content-Type: application/json');
-
+	
+	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+		$email = $_POST['email'];
+		$password = $_POST['password'];
 		$return = [];
 
-		$email = Filter::String( $_POST['email'] );
-		$password = $_POST['password'];
 
-		// Make sure the user does not exist. 
-		$findUser = $con->prepare("SELECT user_id, password FROM users WHERE email = LOWER(:email) LIMIT 1");
-		$findUser->bindParam(':email', $email, PDO::PARAM_STR);
+		$findUser = $con->prepare("SELECT user_id, email, password FROM users WHERE email = :email LIMIT 1");
+		$findUser->bindParam(':email', $email);
 		$findUser->execute();
 
 		if($findUser->rowCount() == 1) {
-			// User exists, try and sign them in
-			$User = $findUser->fetch(PDO::FETCH_ASSOC);
+			$user = $findUser->fetch(PDO::FETCH_ASSOC);
+			$user_id = $user['user_id'];
+			$user_email = $user['email'];
+			$user_pass = $user['password'];
 
-			$user_id = (int) $User['user_id'];
-			$hash = (string) $User['password'];
-
-			if(password_verify($password, $hash)) {
-				// User is signed in
-				$return['redirect'] = '/dashboard.php';
-
+			if($user_id && $user_email && $user_pass){
 				$_SESSION['user_id'] = $user_id;
-			} else {
-				// Invalid user email/password combo
-				$return['error'] = "Invalid user password";
+				$return['success'] = 'Welcome! your are logged in';
+				$return['redirect'] = '/dashboard.php';
+			}else{
+				$return['error'] = 'Invalid e-Mail/Password';
 			}
-
-		} else {
-			// They need to create a new account
-			$return['error'] = "You do not have an account. <a href='/register.php'>Create one now?</a>";
+		}else{
+			$return['error'] = "you dont have account please register first <a href='/register.php'>Register</a>";
 		}
 
 		echo json_encode($return, JSON_PRETTY_PRINT);
-	} else {
-		// Die. Kill the script. Redirect the user. Do something regardless.
-		exit('Invalid URL');
-	}
-?>
+}else{
+	echo "Invalid URL";
+	exit();
+}
+?> 

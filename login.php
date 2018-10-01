@@ -1,11 +1,12 @@
 <?php 
 
-	define('__CONFIG__', true);
-	$title = "Login";
-	require_once "inc/header.php";
-	require_once "inc/config.php";
-	require_once "ajax/session.php";
-	force_to_dashboard();
+$title = "Login";
+define('__CONFIG__', true);
+require_once "inc/header.php";
+require_once "inc/config.php";
+require_once "ajax/session.php";
+force_to_dashboard();
+
 ?> 
 
 
@@ -31,6 +32,7 @@
 		<div class="uk-margin">
 			<button class="uk-button uk-button-primary" type="submit">Login</button>
 		</div>
+		<div class="uk-margin uk-alert uk-alert-success js-success" style="display: none;"></div>
 	</form>
 </div>
 

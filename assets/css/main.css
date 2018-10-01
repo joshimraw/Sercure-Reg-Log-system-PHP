@@ -1,0 +1,25 @@
+
+
+.uk-logo > span {
+
+    color: dodgerblue;
+
+}
+
+.js-login > .uk-alert{
+	padding: 0;
+}
+.t-upper{
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.t-white{
+	color: white;
+}
+.back-pink{
+	background: dodgerblue;
+	padding: 2px;
+	border-radius: 2px;
+}
+
+

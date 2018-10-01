@@ -1,40 +1,37 @@
+
 <?php 
-$title = "Dashboard";
-require_once "inc/header.php";
+$title = "dashboard";
 define('__CONFIG__', true);
-include_once 'inc/config.php';
-include_once 'ajax/session.php';
+require_once "inc/dheader.php";
+require_once "inc/config.php";
+require_once "ajax/session.php";
 
 force_to_login();
-
 $user_id = $_SESSION['user_id'];
 
-$getUserInfo = $con->prepare("SELECT user_id, email, reg_time FROM users WHERE user_id = :user_id LIMIT 1");
-$getUserInfo->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+$getUserInfo = $con->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
+$getUserInfo->bindParam(':user_id', $user_id);
 $getUserInfo->execute();
 
 if($getUserInfo->rowCount() == 1){
 	$user = $getUserInfo->fetch(PDO::FETCH_ASSOC);
-}else{
-	header("location: /logout.php");
+}
+
+$mr_mrs = '';
+if($user['gender'] == 'male'){
+	$mr_mrs = 'Mr.';
+}else if($user['gender'] == 'female'){
+	$mr_mrs = 'Mrs.';
 }
 ?>
 
-  	<div class="uk-section uk-container">
-  		<?php 
-  			echo "Hello world. Today is: ". date("y m d"). "<br>";
-  			echo $user['user_id']. " is your user id ";
-  			echo "and you was registered on ".$user['reg_time']. " by " .$user['email']. "<br>";
-
-  		?> 
-
-
-  		<a class="uk-button uk-button-primary" href="logout.php" >Logout</a>
-      
-
-  	</div>
+<h2>Welcome 
+	<?php echo "<span class='t-upper t-white back-pink'>"
+	.$mr_mrs. ' ' .$user['full_name']."&nbsp;
+	</span>"; ?></h2>
+<p><?php echo "Today is : ". date("Y-m-d"); ?></p>
 
 
 
-  	<?php require_once "inc/footer.php"; ?> 
 
+ <?php require_once "inc/footer.php"; ?> 
